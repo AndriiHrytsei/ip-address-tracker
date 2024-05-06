@@ -1,5 +1,9 @@
+import Map from "../Map/Map"
+
 const App = () => {
-  return <h1>This is a react template using vite</h1>
+  return (
+    <Map />
+  )
 }
 
 export default App
