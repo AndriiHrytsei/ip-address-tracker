@@ -1,9 +1,15 @@
-import Map from "../Map/Map"
+import Map from "../Map/Map";
+import Form from "../Form/Form";
+
+import { useState } from "react";
 
 const App = () => {
   return (
-    <Map />
-  )
-}
+    <>
+      <Form/>
+      <Map />
+    </>
+  );
+};
 
-export default App
+export default App;
