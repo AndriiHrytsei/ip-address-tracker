@@ -1,17 +1,23 @@
+import css from "./InfoPanel.module.css"
+
 const InfoPanel = () => {
   return (
-    <ul>
-      <li className="listItem">
-        <h2>IP Address</h2>
+    <ul className={css.infoPanelList}>
+      <li className={css.listItem}>
+        <h2>IP ADDRESS</h2>
+        <p>–</p>
       </li>
-      <li className="listItem">
-        <h2>Location</h2>
+      <li className={css.listItem}>
+        <h2>LOCATION</h2>
+        <p>–</p>
       </li>
-      <li className="listItem">
-        <h2>Timezone</h2>
+      <li className={css.listItem}>
+        <h2>TIMEZONE</h2>
+        <p>–</p>
       </li>
-      <li className="listItem">
+      <li className={css.listItem}>
         <h2>ISP</h2>
+        <p>–</p>
       </li>
     </ul>
   )

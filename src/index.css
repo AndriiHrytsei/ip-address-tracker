@@ -14,8 +14,13 @@ html {
   text-size-adjust: none;
 }
 
+body, 
+html {
+  overflow-x: hidden;
+}
+
 /* Remove default margin in favour of better control in authored CSS */
-body, h1, h2, h3, h4, p {
+body, h1, h2, h3, h4, p, ul {
   margin: 0;
   padding: 0;
 }
