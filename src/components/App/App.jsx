@@ -1,14 +1,15 @@
 import Map from "../Map/Map";
 import Form from "../Form/Form";
+import Layout from "../Layout/Layout";
 
-import { useState } from "react";
 
 const App = () => {
+  
   return (
-    <>
-      <Form/>
+    <Layout>
+      <Form />
       <Map />
-    </>
+    </Layout>
   );
 };
 
