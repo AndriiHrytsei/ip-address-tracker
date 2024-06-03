@@ -1,15 +1,15 @@
 .infoPanelList {
   display: flex;
   width: 90%;
-  min-height: 15rem;
-  flex-wrap: wrap;
+  max-width: 80rem;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
-  row-gap: 15px;
+  justify-content: space-between;
+  row-gap: 30px;
   background-color: #fff;
   margin-top: 40px;
   border-radius: 15px;
-  padding: 30px 0;
+  padding: 30px 0px;
   position: relative;
   z-index: 3000;
 }
@@ -20,5 +20,40 @@
 
 .listItem h2 {
   color: var(--dark-gray);
-  font-size: 0.8em;
+  font-size: 0.7em;
+  margin-bottom: 10px;
+  letter-spacing: 0.2em;
+}
+
+.listItem p {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+@media screen and (min-width: 1050px) {
+  .infoPanelList {
+    flex-direction: row;
+    margin-top: 70px;
+    min-height: 12rem;
+    padding: 45px 40px;
+    align-items: flex-start;
+  }
+  .listItem {
+    text-align: left;    
+    position: relative;
+  }
+
+  .listItem:not(:first-child)::before {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 1px;
+    height: 7rem;
+    left: -2rem;
+    background-color: var(--dark-gray);
+  }
+
+  .listItem p {
+    font-size: 1.6em;
+  }
 }
