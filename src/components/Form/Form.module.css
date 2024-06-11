@@ -1,6 +1,5 @@
 .formBox {
   display: flex;
-  /* width: 100%; */
   height: 350px;
   flex-direction: column;
   align-items: center;
@@ -47,11 +46,9 @@ button[type="submit"] {
   background-position: center;
 }
 
-
 @media screen and (min-width: 1050px) {
   .formBox {
     background-image: url(../../images/pattern-bg-desktop.png);
-    
   }
   .formHeading {
     font-size: 2.6em;
