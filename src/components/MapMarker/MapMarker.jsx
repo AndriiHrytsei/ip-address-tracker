@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Marker, useMap } from "react-leaflet";
-import marker from "../../images/icon-location.svg"
+import marker from "../../images/icon-location.svg";
 
-const MapMarker = () => {
-  const [pos, setPos] = useState([0, 0]);
+const MapMarker = ({ latLng }) => {
   const map = useMap();
 
   const myIcon = L.icon({
@@ -11,13 +10,12 @@ const MapMarker = () => {
   });
 
   useEffect(() => {
-    map.locate().on("locationfound", (e) => {
-      setPos(e.latlng);
-      map.setView(e.latlng, map.getZoom());
-    });
-  }, [map]);
+    map.setView(latLng, map.getZoom());
+  }, [map, latLng]);
 
-  return pos === null ? null : <Marker position={pos} icon={myIcon}></Marker>;
+  return latLng === null ? null : (
+    <Marker position={latLng} icon={myIcon}></Marker>
+  );
 };
 
 export default MapMarker;
