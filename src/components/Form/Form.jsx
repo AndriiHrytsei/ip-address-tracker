@@ -3,8 +3,8 @@ import InfoPanel from "../InfoPanel/InfoPanel";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PropTypes from 'prop-types';
 
-// "Unable to fetch data. Please disable your ad blocker and try again.",
 
 const Form = ({ getLatLng }) => {
   const [geoLocationInfo, setGeoLocationInfo] = useState(null);
@@ -102,5 +102,9 @@ const Form = ({ getLatLng }) => {
     </section>
   );
 };
+
+Form.propTypes = {
+  getLatLng: PropTypes.func.isRequired
+}
 
 export default Form;

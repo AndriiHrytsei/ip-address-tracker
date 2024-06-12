@@ -1,4 +1,5 @@
 import css from "./InfoPanel.module.css";
+import PropTypes from 'prop-types';
 
 const InfoPanel = ({ locationInfo, status }) => {
   
@@ -31,6 +32,11 @@ const InfoPanel = ({ locationInfo, status }) => {
     </ul>
   );
 };
+
+InfoPanel.propTypes = {
+  locationInfo: PropTypes.object.isRequired,
+  status: PropTypes.oneOf(["idle", "pending", "resolved", "rejected"]).isRequired
+}
 
 export default InfoPanel;
 
