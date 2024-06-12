@@ -37,20 +37,18 @@
     min-height: 12rem;
     padding: 45px 40px;
     align-items: flex-start;
-  }
-  .listItem {
-    text-align: left;    
-    position: relative;
+    column-gap: 20px;
   }
 
-  .listItem:not(:first-child)::before {
-    position: absolute;
-    content: "";
-    display: block;
-    width: 1px;
-    height: 7rem;
-    left: -2rem;
-    background-color: var(--dark-gray);
+  .listItem {
+    text-align: left;    
+    min-height: 100%;
+    text-align: left;    
+  }
+
+  .listItem:not(:first-child) {
+    border-left: 1px solid var(--dark-gray);
+    padding-left: 20px;
   }
 
   .listItem p {
