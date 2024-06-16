@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Marker, useMap } from "react-leaflet";
 import marker from "../../images/icon-location.svg";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const MapMarker = ({ latLng }) => {
   const map = useMap();
@@ -12,7 +12,7 @@ const MapMarker = ({ latLng }) => {
   });
 
   useEffect(() => {
-    map.setView(latLng, map.getZoom());
+    map.flyTo(latLng, map.getZoom());
   }, [map, latLng]);
 
   return latLng === null ? null : (
@@ -21,7 +21,7 @@ const MapMarker = ({ latLng }) => {
 };
 
 MapMarker.propTypes = {
-  latLng: PropTypes.array.isRequired
-}
+  latLng: PropTypes.array.isRequired,
+};
 
 export default MapMarker;

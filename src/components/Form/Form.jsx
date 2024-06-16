@@ -70,6 +70,7 @@ const Form = ({ getLatLng }) => {
       getLatLng([data.latitude, data.longitude]);
       setStatus("resolved");
       setInputVal("");
+      console.log(data);
       return data;
     } catch (err) {
       setStatus("rejected");
@@ -93,6 +94,7 @@ const Form = ({ getLatLng }) => {
           className={css.ipField}
           value={inputVal}
           onChange={(e) => setInputVal(e.currentTarget.value)}
+          placeholder="Search for any IP address or domain"
           required
         />
         <button type="submit"></button>
