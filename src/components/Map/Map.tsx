@@ -1,9 +1,9 @@
 import css from "./Map.module.css";
 import { MapContainer, TileLayer } from "react-leaflet";
-import PropTypes from 'prop-types';
+import React from "react";
 
-const Map = ({ children }) => {
-  const mapCenter = [0, 0];
+const Map = ({ children }: {children: React.ReactNode}) => {
+  const mapCenter: [number, number] = [0, 0];
   return (
       <MapContainer
         center={mapCenter}
@@ -21,10 +21,6 @@ const Map = ({ children }) => {
       </MapContainer>
   );
 };
-
-Map.propTypes = {
-  children: PropTypes.node.isRequired
-}
 
 
 export default Map;

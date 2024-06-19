@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { Marker, useMap } from "react-leaflet";
 import marker from "../../images/icon-location.svg";
-import PropTypes from "prop-types";
+import L from 'leaflet'
 
-const MapMarker = ({ latLng }) => {
+
+const MapMarker = ({ latLng }: {latLng: [number, number]}) => {
   const map = useMap();
 
   // eslint-disable-next-line no-undef
@@ -18,10 +19,6 @@ const MapMarker = ({ latLng }) => {
   return latLng === null ? null : (
     <Marker position={latLng} icon={myIcon}></Marker>
   );
-};
-
-MapMarker.propTypes = {
-  latLng: PropTypes.array.isRequired,
 };
 
 export default MapMarker;

@@ -1,12 +1,28 @@
 import css from "./InfoPanel.module.css";
-import PropTypes from "prop-types";
 import { ThreeDots } from "react-loader-spinner";
 
-const InfoPanel = ({ locationInfo, status }) => {
+interface LocationInfoInterface {
+  ip: string;
+  province: string;
+  city: string;
+  zipcode: string;
+  timezoneOffset: number;
+  isp: string;
+}
+
+type Status = "idle" | "pending" | "resolved" | "rejected";
+
+const InfoPanel = ({
+  locationInfo,
+  status,
+}: {
+  locationInfo: LocationInfoInterface;
+  status: Status;
+}) => {
   const geoData = {
     ip:
       status === "resolved" ? (
-        locationInfo.ip
+        <p>{locationInfo.ip}</p>
       ) : (
         <ThreeDots
           visible={true}
@@ -19,7 +35,9 @@ const InfoPanel = ({ locationInfo, status }) => {
       ),
     location:
       status === "resolved" ? (
-        `${locationInfo.province}, ${locationInfo.city} ${locationInfo.zipode}`
+        <p>
+          {locationInfo.province}, {locationInfo.city} {locationInfo.zipcode}
+        </p>
       ) : (
         <ThreeDots
           visible={true}
@@ -32,7 +50,7 @@ const InfoPanel = ({ locationInfo, status }) => {
       ),
     timezone:
       status === "resolved" ? (
-        `UTC ${locationInfo.timezoneOffset}`
+        <p>UTC {locationInfo.timezoneOffset}</p>
       ) : (
         <ThreeDots
           visible={true}
@@ -45,7 +63,7 @@ const InfoPanel = ({ locationInfo, status }) => {
       ),
     isp:
       status === "resolved" ? (
-        locationInfo.isp
+        <p>{locationInfo.isp}</p>
       ) : (
         <ThreeDots
           visible={true}
@@ -62,28 +80,22 @@ const InfoPanel = ({ locationInfo, status }) => {
     <ul className={css.infoPanelList}>
       <li className={css.listItem}>
         <h2>IP ADDRESS</h2>
-        <p>{geoData.ip}</p>
+        {geoData.ip}
       </li>
       <li className={css.listItem}>
         <h2>LOCATION</h2>
-        <p>{geoData.location}</p>
+        {geoData.location}
       </li>
       <li className={css.listItem}>
         <h2>TIMEZONE</h2>
-        <p>{geoData.timezone}</p>
+        {geoData.timezone}
       </li>
       <li className={css.listItem}>
         <h2>ISP</h2>
-        <p>{geoData.isp}</p>
+        {geoData.isp}
       </li>
     </ul>
   );
-};
-
-InfoPanel.propTypes = {
-  locationInfo: PropTypes.object.isRequired,
-  status: PropTypes.oneOf(["idle", "pending", "resolved", "rejected"])
-    .isRequired,
 };
 
 export default InfoPanel;

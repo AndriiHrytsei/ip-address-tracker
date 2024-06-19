@@ -1,20 +1,31 @@
 import css from "./Form.module.css";
 import InfoPanel from "../InfoPanel/InfoPanel";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
+interface GeoLocationInfoInterface {
+  ip: string;
+  city: string;
+  province: string;
+  zipcode: string;
+  isp: string;
+  timezoneOffset: number;
+}
 
-const Form = ({ getLatLng }) => {
-  const [geoLocationInfo, setGeoLocationInfo] = useState(null);
-  const [status, setStatus] = useState("idle");
+type Status = "idle" | "pending" | "resolved" | "rejected";
+
+const Form = ({ getLatLng }: { getLatLng: Function }) => {
+  const [geoLocationInfo, setGeoLocationInfo] =
+    useState<GeoLocationInfoInterface>({} as GeoLocationInfoInterface);
+  const [status, setStatus] = useState<Status>("idle");
   const [inputVal, setInputVal] = useState("");
 
   const apiURL =
     "https://api.ipgeolocation.io/ipgeo?apiKey=727ec8e46b904b54bfd09c42d165347e";
 
-  const notify = (errMsg) => {
+  const notify = (errMsg: string) => {
     toast.error(errMsg, {
       position: "top-right",
       theme: "colored",
@@ -25,16 +36,13 @@ const Form = ({ getLatLng }) => {
     setStatus("pending");
     try {
       const response = await fetch(apiURL);
-      if (!response.ok) {
-        throw new Error(response.status);
-      }
+
       const data = await response.json();
       setGeoLocationInfo({
         ip: data.ip,
         city: data.city,
         province: data["state_prov"],
-        zipode: data.zipcode,
-        latLng: [data.latitude, data.longitude],
+        zipcode: data.zipcode,
         isp: data.isp,
         timezoneOffset: data["time_zone"].offset,
       });
@@ -42,28 +50,28 @@ const Form = ({ getLatLng }) => {
       setStatus("resolved");
       return data;
     } catch (err) {
+      const error = err as Error
       setStatus("rejected");
       getLatLng([0, 0]);
-      console.log(err.message);
-      notify("Unable to fetch data. Please disable your ad blocker and try again.");
+      console.log(error.message);
+      notify(
+        "Unable to fetch data. Please disable your ad blocker and try again."
+      );
     }
   };
 
-  const handleFormSubmit = async (e) => {
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("pending");
     try {
       const response = await fetch(`${apiURL}&ip=${inputVal}`);
-      if (!response.ok) {
-        throw new Error(response.status);
-      }
+      console.log(response);
       const data = await response.json();
       setGeoLocationInfo({
         ip: data.ip,
         city: data.city,
         province: data["state_prov"],
-        zipode: data.zipcode,
-        latLng: [data.latitude, data.longitude],
+        zipcode: data.zipcode,
         isp: data.isp,
         timezoneOffset: data["time_zone"].offset,
       });
@@ -73,9 +81,10 @@ const Form = ({ getLatLng }) => {
       console.log(data);
       return data;
     } catch (err) {
+      const error = err as Error
       setStatus("rejected");
       getLatLng([0, 0]);
-      console.log(err.message);
+      console.log(error.message);
       notify("Invalid IP address.");
     }
   };
@@ -106,7 +115,7 @@ const Form = ({ getLatLng }) => {
 };
 
 Form.propTypes = {
-  getLatLng: PropTypes.func.isRequired
-}
+  getLatLng: PropTypes.func.isRequired,
+};
 
 export default Form;
