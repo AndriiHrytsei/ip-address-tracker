@@ -3,40 +3,32 @@ import InfoPanel from "../InfoPanel/InfoPanel";
 import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import PropTypes from "prop-types";
-
-interface GeoLocationInfoInterface {
-  ip: string;
-  city: string;
-  province: string;
-  zipcode: string;
-  isp: string;
-  timezoneOffset: number;
-}
-
-type Status = "idle" | "pending" | "resolved" | "rejected";
+import GeoLocationInfoInterface from "../../types/geolocation"; 
+import Status from "../../types/status";
 
 const Form = ({ getLatLng }: { getLatLng: Function }) => {
   const [geoLocationInfo, setGeoLocationInfo] =
     useState<GeoLocationInfoInterface>({} as GeoLocationInfoInterface);
   const [status, setStatus] = useState<Status>("idle");
-  const [inputVal, setInputVal] = useState("");
+  const [inputVal, setInputVal] = useState<string>("");
 
-  const apiURL =
+  const apiURL: string =
     "https://api.ipgeolocation.io/ipgeo?apiKey=727ec8e46b904b54bfd09c42d165347e";
 
-  const notify = (errMsg: string) => {
+  const notify = (errMsg: string): void => {
     toast.error(errMsg, {
       position: "top-right",
       theme: "colored",
     });
   };
 
-  const getIpAddress = async () => {
+  const getIpAddress = async (): Promise<GeoLocationInfoInterface | void> => {
     setStatus("pending");
     try {
-      const response = await fetch(apiURL);
-
+      const response: Response = await fetch(apiURL);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
       const data = await response.json();
       setGeoLocationInfo({
         ip: data.ip,
@@ -50,22 +42,24 @@ const Form = ({ getLatLng }: { getLatLng: Function }) => {
       setStatus("resolved");
       return data;
     } catch (err) {
-      const error = err as Error
+      const error = err as Error;
       setStatus("rejected");
       getLatLng([0, 0]);
-      console.log(error.message);
+      console.error(error.message);
       notify(
         "Unable to fetch data. Please disable your ad blocker and try again."
       );
     }
   };
 
-  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<GeoLocationInfoInterface | void> => {
     e.preventDefault();
     setStatus("pending");
     try {
-      const response = await fetch(`${apiURL}&ip=${inputVal}`);
-      console.log(response);
+      const response: Response = await fetch(`${apiURL}&ip=${inputVal}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
       const data = await response.json();
       setGeoLocationInfo({
         ip: data.ip,
@@ -78,10 +72,9 @@ const Form = ({ getLatLng }: { getLatLng: Function }) => {
       getLatLng([data.latitude, data.longitude]);
       setStatus("resolved");
       setInputVal("");
-      console.log(data);
       return data;
     } catch (err) {
-      const error = err as Error
+      const error = err as Error;
       setStatus("rejected");
       getLatLng([0, 0]);
       console.log(error.message);
@@ -91,7 +84,6 @@ const Form = ({ getLatLng }: { getLatLng: Function }) => {
 
   useEffect(() => {
     getIpAddress();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -102,7 +94,7 @@ const Form = ({ getLatLng }: { getLatLng: Function }) => {
           type="text"
           className={css.ipField}
           value={inputVal}
-          onChange={(e) => setInputVal(e.currentTarget.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInputVal(e.currentTarget.value)}
           placeholder="Search for any IP address or domain"
           required
         />
@@ -112,10 +104,6 @@ const Form = ({ getLatLng }: { getLatLng: Function }) => {
       <ToastContainer />
     </section>
   );
-};
-
-Form.propTypes = {
-  getLatLng: PropTypes.func.isRequired,
 };
 
 export default Form;

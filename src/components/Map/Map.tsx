@@ -1,9 +1,10 @@
 import css from "./Map.module.css";
 import { MapContainer, TileLayer } from "react-leaflet";
+import LatLng from "../../types/latLng";
 import React from "react";
 
 const Map = ({ children }: {children: React.ReactNode}) => {
-  const mapCenter: [number, number] = [0, 0];
+  const mapCenter: LatLng = [0, 0];
   return (
       <MapContainer
         center={mapCenter}

@@ -1,22 +1,13 @@
 import css from "./InfoPanel.module.css";
 import { ThreeDots } from "react-loader-spinner";
-
-interface LocationInfoInterface {
-  ip: string;
-  province: string;
-  city: string;
-  zipcode: string;
-  timezoneOffset: number;
-  isp: string;
-}
-
-type Status = "idle" | "pending" | "resolved" | "rejected";
+import GeoLocationInfoInterface from "../../types/geolocation";
+import Status from "../../types/status";
 
 const InfoPanel = ({
   locationInfo,
   status,
 }: {
-  locationInfo: LocationInfoInterface;
+  locationInfo: GeoLocationInfoInterface;
   status: Status;
 }) => {
   const geoData = {
