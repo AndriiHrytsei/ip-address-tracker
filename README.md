@@ -1,8 +1,75 @@
-# React + Vite
+# Frontend Mentor - IP address tracker solution
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a solution to the [IP address tracker challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/ip-address-tracker-I8-0yYAH0). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
-Currently, two official plugins are available:
+## Table of contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
+
+**Note: Delete this note and update the table of contents based on what sections you keep.**
+
+## Overview
+
+### The challenge
+
+Users should be able to:
+
+- View the optimal layout for each page depending on their device's screen size
+- See hover states for all interactive elements on the page
+- See their own IP address on the map on the initial page load
+- Search for any IP addresses or domains and see the key information and location
+
+### Screenshot
+
+![](./src/images/screenshot1.png)
+![](./src/images/screenshot2.png)
+
+### Links
+
+- [Solution URL](https://github.com/AndriiHrytsei/ip-address-tracker)
+- [Live Site URL](https://andriihrytsei.github.io/ip-address-tracker/)
+
+## My process
+
+### Built with
+
+- Semantic HTML5 markup
+- CSS custom properties
+- Flexbox
+- Mobile-first workflow
+- [React](https://reactjs.org/) – JS library
+- [Typescript](https://www.typescriptlang.org/)
+– [Vite](https://vitejs.dev/) – build tool
+– [Leaflet.js](https://leafletjs.com/index.html) – Javascript map library
+- [React leaflet](https://react-leaflet.js.org/docs/start-introduction/) – library that provides bindings between React and Leaflet
+- [React Toastify](https://www.npmjs.com/package/react-toastify?activeTab=readme) - pop-up notification library for React.
+
+### What I learned
+
+In this project I learned ho to use the leaflet.js, which is an open-source JavaScript library for mobile-friendly interactive maps.
+I also started to learn Typescript and importance of setting data types to variables.
+
+### Continued development
+
+I will further learn Typescript
+
+### Useful resources
+
+- [Leaflet.js docs](https://leafletjs.com/reference.html) - This documentation has helped me a lot with understanding the concepts of Leaflet.js
+- [React Leaflet docs](https://react-leaflet.js.org/docs/start-introduction/) - This is documentation helped me with implementing the Leaflet.js map into React.
+- [React Typescript cheatsheet](https://react-typescript-cheatsheet.netlify.app/docs/basic/setup/) - This helped me with types in React.
+- [Learn TypeScript - Full Course for Beginners](https://youtu.be/gp5H0Vw39yw) - This video made by freeCodeCamp.org has helped me with grasping the basics of Typescript.
+
+## Author
+
+- Github - [AndriiHrytsei](https://github.com/AndriiHrytsei)
+- Frontend Mentor - [@AndriiHrytsei](https://www.frontendmentor.io/profile/AndriiHrytsei)
