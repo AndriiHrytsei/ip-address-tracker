@@ -49,7 +49,7 @@ Users should be able to:
 - [React](https://reactjs.org/) – JS library
 - [Typescript](https://www.typescriptlang.org/)
 – [Vite](https://vitejs.dev/) – build tool
-– [Leaflet.js](https://leafletjs.com/index.html) – Javascript map library
+- [Leaflet.js](https://leafletjs.com/index.html) – Javascript map library
 - [React leaflet](https://react-leaflet.js.org/docs/start-introduction/) – library that provides bindings between React and Leaflet
 - [React Toastify](https://www.npmjs.com/package/react-toastify?activeTab=readme) - pop-up notification library for React.
 
