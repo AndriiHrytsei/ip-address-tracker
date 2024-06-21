@@ -71,7 +71,6 @@ const Form = ({ getLatLng }: { getLatLng: Function }) => {
       });
       getLatLng([data.latitude, data.longitude]);
       setStatus("resolved");
-      setInputVal("");
       return data;
     } catch (err) {
       const error = err as Error;
