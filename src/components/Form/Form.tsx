@@ -12,8 +12,7 @@ const Form = ({ getLatLng }: { getLatLng: Function }) => {
   const [status, setStatus] = useState<Status>("idle");
   const [inputVal, setInputVal] = useState<string>("");
 
-  const apiURL: string =
-    "https://api.ipgeolocation.io/ipgeo?apiKey=727ec8e46b904b54bfd09c42d165347e";
+  const apiKey = import.meta.env.VITE_API_KEY
 
   const notify = (errMsg: string): void => {
     toast.error(errMsg, {
@@ -25,7 +24,7 @@ const Form = ({ getLatLng }: { getLatLng: Function }) => {
   const getIpAddress = async (): Promise<GeoLocationInfoInterface | void> => {
     setStatus("pending");
     try {
-      const response: Response = await fetch(apiURL);
+      const response: Response = await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
@@ -56,7 +55,7 @@ const Form = ({ getLatLng }: { getLatLng: Function }) => {
     e.preventDefault();
     setStatus("pending");
     try {
-      const response: Response = await fetch(`${apiURL}&ip=${inputVal}`);
+      const response: Response = await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}&ip=${inputVal}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
