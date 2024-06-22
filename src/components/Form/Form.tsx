@@ -13,7 +13,7 @@ const Form = ({ getLatLng }: { getLatLng: Function }) => {
   const [inputVal, setInputVal] = useState<string>("");
 
   const apiURL: string =
-    `https://api.ipgeolocation.io/ipgeo?apiKey=${import.meta.env.VITE_API_KEY}`;
+    "https://api.ipgeolocation.io/ipgeo?apiKey=727ec8e46b904b54bfd09c42d165347e";
 
   const notify = (errMsg: string): void => {
     toast.error(errMsg, {
