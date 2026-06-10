@@ -11,8 +11,8 @@ const Map = ({ children }: {children: React.ReactNode}) => {
         zoom={13}
         scrollWheelZoom={false}
         id={css.map}
-        zoomControl={false}
-        dragging={false}
+        zoomControl={true}
+        dragging={true}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
